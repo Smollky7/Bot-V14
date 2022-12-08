@@ -1,0 +1,11 @@
+{
+  "TOKEN":"",
+"MONGODBURL":"",
+"LOGS":"",
+"CLIENT_ID":"",
+"CLIENT_SECRET":"",
+    "DBD":"",
+    "Tick":"✅",
+    "Cross":"❌",
+    "settings":"⚠️"
+}
