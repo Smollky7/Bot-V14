@@ -5,7 +5,7 @@ module.exports = {
     name: "Avatar",
     type: ApplicationCommandType.User,
     context: true,
-    category: "Contexto",
+    category: "Contex",
 
     /**
      * @param {ContextMenuCommandInteraction} interaction 

@@ -12,19 +12,19 @@ const EditReply = require("../../Systems/EditReply")
 
 module.exports = {
     name: "ban",
-    description: "Ban's a member from your server.",
+    description: "Banir um membro do seu servidor.",
     UserPerms: ["BanMembers"],
     BotPerms: ["BanMember"],
     category: "Moderation",
     options: [{
             name: "user",
-            description: "Select the user",
+            description: "Selecione o usuário",
             type: 6,
             required: true,
         },
         {
             name: "reason",
-            description: "Provide a reason",
+            description: "Forneça um motivo",
             type: 3,
             required: false,
         },
@@ -48,14 +48,14 @@ module.exports = {
         } = interaction
 
         const member = options.getMember("user")
-        const reason = options.getString("reason") || "No reason provided"
+        const reason = options.getString("reason") || "Nenhuma razão fornecida"
 
-        if (member.id === user.id) return EditReply(interaction, "❌", `You can't ban yourself!`)
-        if (guild.ownerId === member.id) return EditReply(interaction, "❌", `You can't ban the server owner!`)
+        if (member.id === user.id) return EditReply(interaction, "❌", `Você não pode se banir!`)
+        if (guild.ownerId === member.id) return EditReply(interaction, "❌", `Você não pode banir o dono do servidor!`)
         if (guild.members.me.roles.highest.position <= member.roles.highest.position) return EditReply(interaction,
-            "❌", `You can't ban a member of the same level as you or higher!`)
+            "❌", `Você não pode banir um membro do mesmo nível que você ou superior!`)
         if (interaction.member.roles.highest.position <= member.roles.highest.position) return EditReply(interaction,
-            "❌", `I can't ban a member of the same level as you or higher!`)
+            "❌", `Não posso banir um membro do mesmo nível que você ou superior!`)
 
         const Embed = new EmbedBuilder()
             .setColor(client.color)
@@ -75,7 +75,7 @@ module.exports = {
 
         const Page = await interaction.editReply({
             embeds: [
-                Embed.setDescription(`**⚠️ | Do you really want to ban this member?**`)
+                Embed.setDescription(`**⚠️ | Você realmente deseja banir este membro?**`)
             ],
             components: [row]
         })
@@ -97,7 +97,7 @@ module.exports = {
 
                     interaction.editReply({
                         embeds: [
-                            Embed.setDescription(`✅ | **${member}** has been banned for : **${reason}**!`)
+                            Embed.setDescription(`✅ | **${member}** foi banido por: **${reason}**!`)
                         ],
                         components: []
                     })
@@ -105,7 +105,7 @@ module.exports = {
                         embeds: [
                             new EmbedBuilder()
                             .setColor(client.color)
-                            .setDescription(`You've been banned from **${guild.name}**!`)
+                            .setDescription(`Você foi banido de **${guild.name}**!`)
                             .setTimestamp()
                         ]
                     }).catch(err => {
@@ -117,7 +117,7 @@ module.exports = {
             case "ban-no": {
                 interaction.editReply({
                     embeds: [
-                        Embed.setDescription(`✅ | ban request cancelled`)
+                        Embed.setDescription(`✅ | Pedido de proibição cancelado`)
                     ],
                     components: []
                 })
@@ -131,7 +131,7 @@ module.exports = {
 
             interaction.editReply({
                 embeds: [
-                    Embed.setDescription(`❌ | You didn't provide a valid response in time!`)
+                    Embed.setDescription(`❌ | Você não forneceu uma resposta válida a tempo!`)
                 ],
                 components: []
             })
