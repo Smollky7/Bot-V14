@@ -12,19 +12,19 @@ const EditReply = require("../../Systems/EditReply")
 
 module.exports = {
     name: "kick",
-    description: "Kick's a member from your server.",
+    description: "Kick é um membro do seu servidor.",
     UserPerms: ["KickMembers"],
     BotPerms: ["KickMember"],
     category: "Moderation",
     options: [{
             name: "user",
-            description: "Select the user",
+            description: "Selecione o usuário",
             type: 6,
             required: true,
         },
         {
             name: "reason",
-            description: "Provide a reason",
+            description: "Forneça um motivo",
             type: 3,
             required: false,
         },
@@ -48,14 +48,14 @@ module.exports = {
         } = interaction
 
         const member = options.getMember("user")
-        const reason = options.getString("reason") || "No reason provided"
+        const reason = options.getString("reason") || "Nenhuma razão fornecida"
 
-        if (member.id === user.id) return EditReply(interaction, "❌", `You can't kick yourself!`)
-        if (guild.ownerId === member.id) return EditReply(interaction, "❌", `You can't kick the server owner!`)
+        if (member.id === user.id) return EditReply(interaction, "❌", `Você não pode chutar a si mesmo!`)
+        if (guild.ownerId === member.id) return EditReply(interaction, "❌", `Você não pode chutar o dono do servidor!`)
         if (guild.members.me.roles.highest.position <= member.roles.highest.position) return EditReply(interaction,
-            "❌", `You can't kick a member of the same level as you or higher!`)
+            "❌", `Você não pode chutar um membro do mesmo nível que você ou superior!`)
         if (interaction.member.roles.highest.position <= member.roles.highest.position) return EditReply(interaction,
-            "❌", `I can't kick a member of the same level as you or higher!`)
+            "❌", `Não posso chutar um membro do mesmo nível que você ou superior!`)
 
         const Embed = new EmbedBuilder()
             .setColor(client.color)
@@ -75,7 +75,7 @@ module.exports = {
 
         const Page = await interaction.editReply({
             embeds: [
-                Embed.setDescription(`**⚠️ | Do you really want to kick this member?**`)
+                Embed.setDescription(`**⚠️ | Você realmente quer chutar este membro?**`)
             ],
             components: [row]
         })
@@ -97,7 +97,7 @@ module.exports = {
 
                     interaction.editReply({
                         embeds: [
-                            Embed.setDescription(`✅ | **${member}** has been kicked for : **${reason}**!`)
+                            Embed.setDescription(`✅ | **${member}** foi expulso por: **${reason}**!`)
                         ],
                         components: []
                     })
@@ -105,7 +105,7 @@ module.exports = {
                         embeds: [
                             new EmbedBuilder()
                             .setColor(client.color)
-                            .setDescription(`You've been kicked from **${guild.name}**!`)
+                            .setDescription(`Você foi expulso de **${guild.name}**!`)
                             .setTimestamp()
                         ]
                     }).catch(err => {
@@ -117,7 +117,7 @@ module.exports = {
             case "kick-no": {
                 interaction.editReply({
                     embeds: [
-                        Embed.setDescription(`✅ | Kick request cancelled`)
+                        Embed.setDescription(`✅ | Solicitação de kick cancelada`)
                     ],
                     components: []
                 })
@@ -131,7 +131,7 @@ module.exports = {
 
             interaction.editReply({
                 embeds: [
-                    Embed.setDescription(`❌ | You didn't provide a valid response in time!`)
+                    Embed.setDescription(`❌ | Você não forneceu uma resposta válida a tempo!`)
                 ],
                 components: []
             })

@@ -14,6 +14,6 @@ module.exports = {
            // Not done as you can see
         
         
-        return Reply(interaction, "✅", "I seem to have the right permissions to work perfectly fine!")
+        return Reply(interaction, "✅", "Parece que tenho as permissões certas para funcionar perfeitamente bem!")
     }
 }

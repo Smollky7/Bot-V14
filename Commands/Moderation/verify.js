@@ -4,28 +4,24 @@ const EditReply = require("../../Systems/EditReply")
 
 module.exports = {
     name: "verify",
-    description: "Verification System.",
+    description: "Sistema de Verificação.",
     UserPerms: ["ManageGuild"],
     category: "Moderation",
     options: [
         {
             name: "role",
-            description: "Select the verified members role",
+            description: "Selecione a função de membros verificados",
             type: 8,
             required: true
         },
         {
             name: "channel",
-            description: "Select the verify channel",
+            description: "Selecione o canal de verificação",
             type: 7,
             required: false
         },
     ],
 
-    /**
-     * @param {Client} client
-     * @param {ChatInputCommandInteraction} interaction
-     */
     async execute(interaction, client) {
         await interaction.deferReply({ ephemeral: true})
 
@@ -53,8 +49,8 @@ module.exports = {
             embeds: [
                 new EmbedBuilder()
                     .setColor(client.color)
-                    .setTitle("✅ | Verification")
-                    .setDescription("Click the button to verify!")
+                    .setTitle("✅ | Verificação")
+                    .setDescription("Clique no botão para verificar!")
                     .setTimestamp()
             ],
             components: [
@@ -67,6 +63,8 @@ module.exports = {
             ]
         })
 
-        return EditReply(interaction, "✅", `Successfully sent verification panel in ${Channel}`)
+        return EditReply(interaction, "✅", `Painel de verificação enviado com sucesso em ${Channel}`);
+      
+      
     }
 }
